@@ -1,253 +1,200 @@
-import os
 import datetime
 
-def clear_terminal():
-    os.system('cls' if os.name == 'nt' else 'clear')
+class Policlínica:
+    def __init__(self):
+        self.especialidades = {}
+        self.medicos = {}
+        self.socios = {}
+        self.consultas = []
 
-def AltaEspecialidad():
+    def alta_especialidad(self):
         while True:
-            especialidad=input("ingrese nombre de especialidad: ")
-            especialiadad_check= isinstance(especialidad, str)
-            while especialiadad_check==False:
-                print("no es una especialidad valida, ingresela de nuevo.\n")
-                especialidad=input("ingrese nombre de especialidad: ")
-                especialiadad_check= isinstance(especialidad, str)
-
-            precio_aso=int(input("ingrese precio asociado: "))
-            precio_aso_check= isinstance(precio_aso,int)
-            while precio_aso_check!=1:
-                print("no es un precio valido, ingreselo de nuevo.\n")
-                precio_aso=int(input("ingrese precio asociado: "))
-                precio_aso_check= isinstance(precio_aso,int)
-
-            if especialiadad_check==True and precio_aso_check==1:
-                print("Datos ingresados correctamente.\n")
-            else:
-                print("Hubo un error al ingresar los datos.\n")
-             
-            seguir=input("desea continuar? s/n\n")
-            if seguir.lower()=="s":
-                continue
-            elif seguir.lower()=="n":
-                print("Volviendo al menu.")
-                break
-            else:
-                print("Opcion invalida, volviendo al menu.")
-                break
-
-def AltaSocio():
-    while True:
-           
-        nombre=input("ingrese nombre: ")
-        nombre_check= isinstance(nombre,str)
-        while nombre_check==False:
-            print("no es un nombre valido, ingreselo de nuevo. \n")
-            nombre=input("ingrese nombre: ")
-            nombre_check= isinstance(nombre,str)
-            
-        apellido=input("ingrese apellido: ")
-        apellido_check= isinstance(apellido,str)
-        while apellido_check==False:
-            print("no es un apellido valido, ingreselo de nuevo. \n")
-            apellido=input("ingrese apellido: ")
-            apellido_check= isinstance(apellido,str)
-
-        ci=int(input("ingrese cedula de identidad: (sin puntos ni guiones)"))
-        ci_check= isinstance(ci,int)
-        while ci_check!=1:
-            print("no es una cedula valida, intentelo de nuevo. \n")
-            ci=int(input("ingrese cedula de identidad: "))
-            ci_check= isinstance(ci,int)
-
-        nacimiento=datetime(input("ingrese fecha de naciemiento aaaa-mm-dd: "))
-        try:
-            datetime.date.fromisoformat(nacimiento)
-        except ValueError:
-            while ValueError==True:
-                print("Formato de fecha incorrecto, deberia ser aaaa-mm-dd\n")
-                nacimiento=datetime(input("ingrese fecha de ingreso aaaa-mm-dd: \n"))
-        
-        ingreso=datetime(input("ingrese fecha de ingreso aaaa-mm-dd: \n"))
-        try:
-           datetime.date.fromisoformat(ingreso)
-        except ValueError:
-            while ValueError==True:
-                print("Formato de fecha incorrecto, deberia ser aaaa-mm-dd\n")
-                ingreso=datetime(input("ingrese fecha de ingreso aaaa-mm-dd: \n"))
-        
-        celular=int(input("ingrese telefono: "))
-        celular_check=isinstance(celular,int)
-        while celular_check!=1:
-            print("no es un numero telefino valido, intentelo de nuevo.\n")
-            celular=int(input("ingrese telefono: "))
-            celular_check=isinstance(celular,int)
-
-        tipo=input("ingrese el tipo de socio:\n1- Bonificado 2- No bonificado")
-        if tipo.lower()=="1":
-            print("bonificado")
-        elif tipo.lower()=="2":
-            print("no bofinicado")
-        else:
-            while tipo!="1"or"2":
-                print("opcion invalida, vuelva a ingresar el tipo de socio.\n")
-                tipo=input("ingrese el tipo de socio:\n1- Bonificado 2- No bonificado")
-
-        if nombre_check and apellido_check==True and ci_check and celular_check==1 and tipo=="1"or"2":
-            if datetime.date.fromisoformat(nacimiento) and datetime.date.fromisoformat(ingreso):
-                print("datos ingresados correctamente.\n")
-        else:
-            print("hubo un error al ingresar los datos.\n")
-            break
-
-        seguir=input("desea continuar? s/n\n")
-        if seguir.lower()=="s":
-            continue
-        elif seguir.lower()=="n":
-            print("Volviendo al menu")
-            break
-        else:
-            print("Opcion invalida, volviendo al menu")
-            break
-
-def AltaMedico():
-     while True:
-        nombre=input("ingrese nombre: ")
-        nombre_check= isinstance(nombre,str)
-        while nombre_check==False:
-            print("no es un nombre valido, ingreselo de nuevo. \n")
-            nombre=input("ingrese nombre: ")
-            nombre_check= isinstance(nombre,str)
-            
-        apellido=input("ingrese apellido: ")
-        apellido_check= isinstance(apellido,str)
-        while apellido_check==False:
-            print("no es un apellido valido, ingreselo de nuevo. \n")
-            apellido=input("ingrese apellido: ")
-            apellido_check= isinstance(apellido,str)
-
-        ci=int(input("ingrese cedula de identidad (sin puntos ni guiones): "))
-        ci_check= isinstance(ci,int)
-        while ci_check!=1:
-            print("no es una cedula valida, intentelo de nuevo. \n")
-            ci=int(input("ingrese cedula de identidad: "))
-            ci_check= isinstance(ci,int)
-
-        nacimiento=datetime(input("ingrese fecha de naciemiento aaaa-mm-dd: "))
-        try:
-            datetime.date.fromisoformat(nacimiento)
-        except ValueError:
-            while ValueError==True:
-                print("Formato de fecha incorrecto, deberia ser aaaa-mm-dd\n")
-                nacimiento=datetime(input("ingrese fecha de ingreso aaaa-mm-dd: \n"))
-        
-        ingreso=datetime(input("ingrese fecha de ingreso aaaa-mm-dd: \n"))
-        try:
-           datetime.date.fromisoformat(ingreso)
-        except ValueError:
-            while ValueError==True:
-                print("Formato de fecha incorrecto, deberia ser aaaa-mm-dd\n")
-                ingreso=datetime(input("ingrese fecha de ingreso aaaa-mm-dd: \n"))
-        
-        celular=int(input("ingrese telefono: "))
-        celular_check=isinstance(celular,int)
-        while celular_check!=1:
-            print("no es un numero telefino valido, intentelo de nuevo.\n")
-            celular=int(input("ingrese telefono: "))
-            celular_check=isinstance(celular,int)
-
-        especialidad=input("ingrese la especialidad: ")
-        especialidad_check= isinstance(especialidad,str)
-        while especialidad_check==False:
-            print("no es una especialidad valida, ingreselo de nuevo. \n")
-            especialidad=input("ingrese especialidad: ")
-            especialidad_check= isinstance(especialidad,str)
-
-        if nombre_check and apellido_check==True and ci_check and celular_check==1:
-            if datetime.date.fromisoformat(nacimiento) and datetime.date.fromisoformat(ingreso):
-                print("datos ingresados correctamente.\n")
-        else:
-            print("hubo un error al ingresar los datos.\n")
-            break
-
-        seguir=input("desea continuar? s/n\n")
-        if seguir.lower()=="s":
-            continue
-        elif seguir.lower()=="n":
-            print("Volviendo al menu")
-            break
-        else:
-            print("Opcion invalida, volviendo al menu")
-            break
-
-def AltaConsultaMedica():
-     while True:
-            especialidad=input("ingrese nombre de especialidad: ")
-            especialiadad_check= isinstance(especialidad, str)
-            while especialiadad_check==False:
-                choice=int(input("""no es una especialidad valida, desea:
-                      1-volver a ingresar la especialidad.
-                      2-dar de alta la especialidad.\n"""))
-                if choice.lower()==1:
-                    especialidad=input("ingrese nombre de especialidad: ")
-                    especialiadad_check= isinstance(especialidad, str)
-                if choice.lower()==2:
-                    AltaEspecialidad()
-
-            nombre=input("ingrese nombre de medico: ")
-            nombre_check= isinstance(nombre,str)
-            while nombre_check==False:
-                print("no es un nombre valido, ingreselo de nuevo. \n")
-                nombre=input("ingrese nombre: ")
-                nombre_check= isinstance(nombre,str)
-
-            consulta=datetime(input("ingrese fecha de consulta aaaa-mm-dd: \n"))
+            nombre = input("Ingrese el nombre de la especialidad: ")
+            precio = input("Ingrese el precio asociado: ")
             try:
-                datetime.date.fromisoformat(consulta)
+                precio = float(precio)
+                if nombre and precio > 0:
+                    self.especialidades[nombre] = precio
+                    print("La especialidad se ha creado con éxito.")
+                    break
+                else:
+                    print("Por favor, ingrese un nombre válido y un precio mayor que 0.")
             except ValueError:
-                while ValueError==True:
-                    print("Formato de fecha incorrecto, deberia ser aaaa-mm-dd\n")
-                    consulta=datetime(input("ingrese fecha de consulta aaaa-mm-dd: \n"))
-            
-            cantidad=int(input("cantidad de pacientes que se atenderan: "))
-            cantidad_check= isinstance(cantidad,int)
-            while cantidad_check!=1:
-                print("no es una cedula valida, intentelo de nuevo. \n")
-                cantidad=int(input("ingrese cedula de identidad: "))
-                cantidad_check= isinstance(cantidad,int)
-            
+                print("Por favor, ingrese un precio válido.")
 
-def EmitirTicket():
-    return
+    def alta_socio(self):
+        while True:
+            nombre = input("Ingrese el nombre: ")
+            apellido = input("Ingrese el apellido: ")
+            cedula = input("Ingrese la cédula de identidad: ")
+            fecha_nacimiento = input("Ingrese la fecha de nacimiento (YYYY-MM-DD): ")
+            fecha_ingreso = input("Ingrese la fecha de ingreso (YYYY-MM-DD): ")
+            celular = input("Ingrese el número de celular: ")
+            tipo = input("Ingrese el tipo de socio (1- Bonificado, 2- No bonificado): ")
 
-def RealizarConsulta():
-    return
+            try:
+                cedula = int(cedula)
+                celular = int(celular)
+                fecha_nacimiento = datetime.fromisoformat(fecha_nacimiento)
+                fecha_ingreso = datetime.fromisoformat(fecha_ingreso)
 
-if __name__=="__main__":
-     while True:
-        choice = input("""\nSeleccione una opción del menú:
-1. Dar de alta una especialidad
-2. Dar de alta un socio
-3. Dar de alta un médico
-4. Dar de alta una consulta médica
-5. Emitir un ticket de consulta
-6. Realizar consultas
-7. Salir del programa \n""")
-        clear_terminal()
-        if choice.lower()=="1":
-            AltaEspecialidad()
-        elif choice.lower()=="2":
-            AltaSocio()
-        elif choice.lower()=="3":
-            AltaMedico()
-        elif choice.lower()=="4":
-            AltaConsultaMedica()
-        elif choice.lower()=="5":
-            EmitirTicket()
-        elif choice.lower()=="6":
-            RealizarConsulta()
-        elif choice.lower()=="7":
-            print("Saliendo...")
-            break
-        else:
-            print("La opción seleccionada no es correcta, vuelva a intentar con otra opción.")
-            continue
+                if tipo == "1":
+                    tipo = "Bonificado"
+                elif tipo == "2":
+                    tipo = "No bonificado"
+                else:
+                    raise ValueError
+                nombre_check= isinstance(nombre, str)
+                apellido_check= isinstance(apellido, str)
+                cedula_check=isinstance(cedula,int)
+                celular_check=isinstance(celular,int)
+                if nombre_check==True and apellido_check==True and cedula==1 and celular==1:
+                    self.socios[cedula] = {
+                        "nombre": nombre, 
+                        "apellido": apellido,
+                        "fecha_nacimiento": fecha_nacimiento,
+                        "fecha_ingreso": fecha_ingreso,
+                        "celular": celular,
+                        "tipo": tipo,
+                        "deuda": 0
+                    }
+                    print("El socio se ha creado con éxito.")
+                    break
+                else:
+                    print("Por favor, ingrese valores válidos.")
+            except ValueError:
+                print("Por favor, ingrese valores válidos.")
+
+    def alta_medico(self):
+        while True:
+            nombre = input("Ingrese el nombre: ")
+            apellido = input("Ingrese el apellido: ")
+            cedula = int(input("Ingrese la cédula de identidad: "))
+            fecha_nacimiento = datetime(input("Ingrese la fecha de nacimiento (YYYY-MM-DD): "))
+            fecha_ingreso = datetime(input("Ingrese la fecha de ingreso (YYYY-MM-DD): "))
+            celular = int(input("Ingrese el número de celular: "))
+            especialidad = input("Ingrese la especialidad: ")
+
+            try:
+                cedula = int(cedula)
+                celular = int(celular)
+                fecha_nacimiento = datetime.fromisoformat(fecha_nacimiento)
+                fecha_ingreso = datetime.fromisoformat(fecha_ingreso)
+
+                if nombre and apellido and cedula > 0 and celular > 0 and especialidad:
+                    self.medicos[cedula] = {
+                        "nombre": nombre,
+                        "apellido": apellido,
+                        "fecha_nacimiento": fecha_nacimiento,
+                        "fecha_ingreso": fecha_ingreso,
+                        "celular": celular,
+                        "especialidad": especialidad
+                    }
+                    print("El médico se ha creado con éxito.")
+                    break
+                else:
+                    print("Por favor, ingrese valores válidos.")
+            except ValueError:
+                print("Por favor, ingrese valores válidos.")
+
+    def alta_consulta_medica(self):
+        while True:
+            especialidad = input("Ingrese la especialidad: ")
+            if especialidad not in self.especialidades:
+                print("La especialidad no está dada de alta.")
+                opcion = input("¿Desea dar de alta esta especialidad? (s/n): ")
+                if opcion.lower() == "s":
+                    self.alta_especialidad()
+                else:
+                    break
+            else:
+                medico_nombre = input("Ingrese el nombre del médico: ")
+                medico_encontrado = False
+                for medico in self.medicos.values():
+                    if medico["nombre"] == medico_nombre:
+                        medico_encontrado = True
+                        break
+                if not medico_encontrado:
+                    print("Este médico no está dado de alta.")
+                    opcion = input("¿Desea dar de alta este médico? (s/n): ")
+                    if opcion.lower() == "s":
+                        self.alta_medico()
+                    else:
+                        break
+                else:
+                    fecha = input("Ingrese la fecha de la consulta (YYYY-MM-DD): ")
+                    fecha = datetime.datetime.strptime(fecha, "%Y-%m-%d").date()
+                    cantidad_pacientes = input("Ingrese la cantidad de pacientes que se atenderán: ")
+                    try:
+                        cantidad_pacientes = int(cantidad_pacientes)
+                        self.consultas.append({
+                            "especialidad": especialidad,
+                            "medico": medico_nombre,
+                            "fecha": fecha,
+                            "cantidad_pacientes": cantidad_pacientes
+                        })
+                        print("La consulta se ha creado con éxito.")
+                        break
+                    except ValueError:
+                        print("Por favor, ingrese un valor numérico para la cantidad de pacientes.")
+
+    def emitir_ticket_consulta(self):
+        especialidad = input("Ingrese la especialidad: ")
+        if especialidad not in self.especialidades:
+            print("La especialidad no está dada de alta.")
+            opcion = input("¿Desea dar de alta esta especialidad? (s/n): ")
+            if opcion.lower() == "s":
+                self.alta_especialidad()
+            else:
+                return
+
+        print("Consultas disponibles para la especialidad", especialidad)
+        for i, consulta in enumerate(self.consultas, start=1):
+            if consulta["especialidad"] == especialidad:
+                print(f"{i}. Médico: {consulta['medico']}, Fecha: {consulta['fecha']}")
+
+        while True:
+            opcion = input("Seleccione el número de atención deseado: ")
+            try:
+                opcion = int(opcion)
+                if 1 <= opcion <= len(self.consultas):
+                    numero_consulta = opcion - 1
+                    consulta = self.consultas[numero_consulta]
+                    print(f"Ha seleccionado la consulta del médico {consulta['medico']} el {consulta['fecha']}.")
+                    break
+                else:
+                    print(f"La opción ingresada no es válida. Debe ser un número entre 1 y {len(self.consultas)}.")
+            except ValueError:
+                print("Por favor, ingrese un número válido.")
+
+    def menu_principal(self):
+        while True:
+            print("\nMenú principal:")
+            print("Seleccione una opción del menú:")
+            print("1. Dar de alta una especialidad")
+            print("2. Dar de alta un socio")
+            print("3. Dar de alta un médico")
+            print("4. Dar de alta una consulta médica")
+            print("5. Emitir un ticket de consulta")
+            print("6. Salir del programa")
+
+            opcion = input("Opción: ")
+            if opcion == "1":
+                self.alta_especialidad()
+            elif opcion == "2":
+                self.alta_socio()
+            elif opcion == "3":
+                self.alta_medico()
+            elif opcion == "4":
+                self.alta_consulta_medica()
+            elif opcion == "5":
+                self.emitir_ticket_consulta()
+            elif opcion == "6":
+                print("Saliendo del programa...")
+                break
+            else:
+                print("La opción seleccionada no es válida. Por favor, seleccione una opción válida.")
+
+if __name__ == "__main__":
+    poli = Policlínica()
+    poli.menu_principal()
